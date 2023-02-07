@@ -27,8 +27,8 @@ DEBUG = env('DEBUG')
 ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
 
 # load production server from .env
-ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1') ]
-CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1') ]
+ALLOWED_HOSTS        = ['*','192.168.88.190', 'localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1') ]
+CSRF_TRUSTED_ORIGINS = ['*','http://localhost:85', 'http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1')]
 
 # Application definition
 
@@ -91,12 +91,36 @@ if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
         'PORT'    : os.getenv('DB_PORT'     , 3306),
         }, 
     }
+# if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
+#     DATABASES = { 
+#       'default': {
+#         'ENGINE'  : 'django.db.backends.mysql', 
+#         'NAME'    : 'komatsu_horno_db',
+#         'USER'    : 'root',
+#         'PASSWORD': 'delpiero2001',
+#         'HOST'    : '192.168.88.40',
+#         'PORT'    : '3306',
+#         }, 
+#     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }
+            'ENGINE'  : 'django.db.backends.mysql', 
+            'NAME'    : 'axotec',
+            'USER'    : 'root',
+            'PASSWORD': 'delpiero2001',
+            'HOST'    : '192.168.88.40',
+            'PORT'    : '3306',
+        }, 
+        # 'default2': {
+        #     'ENGINE'  : 'django.db.backends.mysql', 
+        #     'NAME'    : 'komatsu_horno_db',
+        #     'USER'    : 'root',
+        #     'PASSWORD': 'delpiero2001',
+        #     'HOST'    : '192.168.88.40',
+        #     'PORT'    : '3306',
+        # }, 
+        # c
     }
 
 # Password validation

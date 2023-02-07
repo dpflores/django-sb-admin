@@ -1,0 +1,145 @@
+
+<div id='{{id}}'></div>
+
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    
+
+// Create the chart
+Highcharts.stockChart('{{id}}', {
+    chart: {
+        
+        events: {
+            load: function () {
+
+                // set up the updating of the chart each second
+                var series1 = this.series[0];
+                var series2 = this.series[1];
+                var series3 = this.series[2];
+                setInterval(function () {
+
+
+                    var JSON=$.ajax({
+                        url: "{% url 'update_chart' %}",
+                        type: "GET",
+                        dataType: "json",
+                        async: false}).responseText;
+                    var Respuesta=jQuery.parseJSON(JSON);
+                    
+                    var data1 = Respuesta.accelx_update;
+                    var data2 = Respuesta.accely_update;
+                    var data3 = Respuesta.accelz_update;
+                    
+                    series1.addPoint(data1, true, false);
+                    series2.addPoint(data2, true, false);
+                    series3.addPoint(data3, true, false);
+
+                    //console.log(data_test);
+
+                }, 5000);
+            }
+        },
+        animation: false
+    },
+
+    
+    accessibility: {
+        enabled: false
+    },
+
+    time: {
+        useUTC: false
+    },
+
+    // ADDED
+    legend: {
+        enabled: 'true',
+        // layout: 'vertical',
+        // align: 'right',
+        // verticalAlign: 'middle',
+
+    },
+
+    yAxis: {
+        labels: {
+                format: '{value:.1f}'
+        },
+            opposite: false
+      },
+
+    tooltip: {
+        //pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+    valueDecimals: 2,
+        split: true
+    },
+    // END ADDED
+
+    rangeSelector: {
+
+        buttons: [{
+            count: 1440,
+            type: 'minute',
+            text: 'día'
+        }, {
+            count: 1,
+            type: 'month',
+            text: 'mes'
+        }, {
+            count: 12,
+            type: 'month',
+            text: 'año'
+        },{
+            type: 'all',
+            text: 'Todo'
+        }],
+        inputEnabled: true,
+        selected: 3, 
+    },
+
+    title: {
+        text: ''
+    },
+
+    exporting: {
+        enabled: true
+    },
+    
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        name: '{{label1}}',
+        color: "#66CC00",
+        // showCheckbox: true,
+        data: {{array_accelx | safe}}
+    },
+    {
+        name: '{{label2}}',
+        color: "#FF9933",
+        // showCheckbox: true,
+        data: {{array_accely | safe}}
+
+        
+    },
+    {
+        name: '{{label3}}',
+        color: "#66B2FF",
+        // showCheckbox: true,
+        data: {{array_accelz | safe}}
+    },
+
+    ]
+});
+
+
+</script>

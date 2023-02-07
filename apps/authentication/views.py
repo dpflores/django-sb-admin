@@ -22,11 +22,16 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                if request.user.username == 'fam':
+                    return redirect("/")
+                elif request.user.username == 'kom':
+                    return redirect("komatsu")
+                else:
+                    return redirect("/")
             else:
-                msg = 'Invalid credentials'
+                msg = 'Credenciales inválidas'
         else:
-            msg = 'Error validating the form'
+            msg = 'No se pudo validar el formulario'
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
@@ -43,13 +48,13 @@ def register_user(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
 
-            msg = 'Account created successfully.'
+            msg = 'Cuenta creada correctamente.'
             success = True
 
             # return redirect("/login/")
 
         else:
-            msg = 'Form is not valid'
+            msg = 'Formulario no válido'
     else:
         form = SignUpForm()
 

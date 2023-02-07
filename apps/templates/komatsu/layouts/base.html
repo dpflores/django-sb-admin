@@ -23,24 +23,24 @@
 </head>
 <body class="sb-nav-fixed">
         
-    {% include 'includes/navigation.html' %}
+    {% include 'komatsu/includes/navigation.html' %}
 
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
 
-            {% include 'includes/sidebar.html' %}
+            {% include 'komatsu/includes/sidebar.html' %}
             
         </div>
         <div id="layoutSidenav_content">
         
             {% block content %}{% endblock content %}
 
-            {% include 'includes/footer.html' %}
+            {% include 'komatsu/includes/footer.html' %}
             
         </div>
     </div>
 
-    {% include 'includes/scripts.html' %} 
+    {% include 'komatsu/includes/scripts.html' %} 
 
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
