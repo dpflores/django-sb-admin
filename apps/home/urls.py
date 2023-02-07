@@ -8,10 +8,17 @@ from apps.home import views
 
 urlpatterns = [
 
-    # The home page
+    # The home page 
     path('', views.index, name='home'),
+    # path('index.html', views.index, name='home'),
+    path('komatsu', views.index_komatsu, name='komatsu'),
 
+    #mine 
+    path('ajax/update_chart', views.update_chart, name='update_chart'),
+    
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
+
+    
 
 ]
