@@ -91,36 +91,12 @@ if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
         'PORT'    : os.getenv('DB_PORT'     , 3306),
         }, 
     }
-# if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
-#     DATABASES = { 
-#       'default': {
-#         'ENGINE'  : 'django.db.backends.mysql', 
-#         'NAME'    : 'komatsu_horno_db',
-#         'USER'    : 'root',
-#         'PASSWORD': 'delpiero2001',
-#         'HOST'    : '192.168.88.40',
-#         'PORT'    : '3306',
-#         }, 
-#     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE'  : 'django.db.backends.mysql', 
-            'NAME'    : 'axotec',
-            'USER'    : 'root',
-            'PASSWORD': 'delpiero2001',
-            'HOST'    : '192.168.88.40',
-            'PORT'    : '3306',
-        }, 
-        # 'default2': {
-        #     'ENGINE'  : 'django.db.backends.mysql', 
-        #     'NAME'    : 'komatsu_horno_db',
-        #     'USER'    : 'root',
-        #     'PASSWORD': 'delpiero2001',
-        #     'HOST'    : '192.168.88.40',
-        #     'PORT'    : '3306',
-        # }, 
-        # c
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
     }
 
 # Password validation
