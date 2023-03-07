@@ -102,26 +102,26 @@ if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
 #         'PORT'    : '3306',
 #         }, 
 #     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE'  : 'django.db.backends.mysql', 
-            'NAME'    : 'axotec',
-            'USER'    : 'root',
-            'PASSWORD': 'delpiero2001',
-            'HOST'    : '192.168.88.40',
-            'PORT'    : '3306',
-        }, 
-        # 'default2': {
-        #     'ENGINE'  : 'django.db.backends.mysql', 
-        #     'NAME'    : 'komatsu_horno_db',
-        #     'USER'    : 'root',
-        #     'PASSWORD': 'delpiero2001',
-        #     'HOST'    : '192.168.88.40',
-        #     'PORT'    : '3306',
-        # }, 
-        # c
-    }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE'  : 'django.db.backends.mysql', 
+#             'NAME'    : 'axotec',
+#             'USER'    : 'root',
+#             'PASSWORD': 'delpiero2001',
+#             'HOST'    : '192.168.88.40',
+#             'PORT'    : '3306',
+#         }, 
+#         # 'default2': {
+#         #     'ENGINE'  : 'django.db.backends.mysql', 
+#         #     'NAME'    : 'komatsu_horno_db',
+#         #     'USER'    : 'root',
+#         #     'PASSWORD': 'delpiero2001',
+#         #     'HOST'    : '192.168.88.40',
+#         #     'PORT'    : '3306',
+#         # }, 
+#         # c
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
